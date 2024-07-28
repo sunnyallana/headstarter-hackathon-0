@@ -6,12 +6,15 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Access your API key from environment variables
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  generationConfig: { maxOutputTokens: 10000, temperature: 0.9 },
+});
 
 export default function ChatComponent() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState(
-    `Prepare me a time table to finish Portfolio Website task that starts on 28 july 10 pm and ends on 29 july 10 pm`
+    `Prepare me a time table to finish Portfolio Website task that starts on 28 July 10 pm and ends on 29 July 10 pm`
   );
   const [loading, setLoading] = useState(false);
 
@@ -32,9 +35,13 @@ export default function ChatComponent() {
           setMessages((prevMessages) => {
             const lastMessage = prevMessages[prevMessages.length - 1];
             if (lastMessage && !lastMessage.user) {
-              lastMessage.text = botResponse; // Update the last message text
-              return [...prevMessages.slice(0, -1), lastMessage];
+              // Update the last message text
+              return [
+                ...prevMessages.slice(0, -1),
+                { ...lastMessage, text: botResponse },
+              ];
             } else {
+              // Add the new message
               return [...prevMessages, { text: botResponse, user: false }];
             }
           });
