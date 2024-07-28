@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from '../assets/images/logo.svg';
 
 const HeaderComponent = () => {
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const sections = useRef({});
 
   useEffect(() => {
     const onScroll = () => {
@@ -19,6 +20,31 @@ const HeaderComponent = () => {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 } // Adjust this threshold as needed
+    );
+
+    const sectionElements = document.querySelectorAll('section');
+    sectionElements.forEach((section) => {
+      sections.current[section.id] = section;
+      observer.observe(section);
+    });
+
+    return () => {
+      sectionElements.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
 
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
