@@ -11,13 +11,14 @@ EEVI was developed with a focus on simplicity and efficiency, catering to the ne
 - **Front-end**: React JS
 - **Back-end**: Node JS, Express JS
 - **Database**: PostgreSQL
+- **Testing**: Postman
 - **Deployment**: Vercel (Client and Server), Azure (Database)
 - **AI Integration**: Intelligent scheduling and recommendations
 
 ## Team and Responsibilities
 
-- **Sunny Shaban Ali**: Front-end Development using React JS, Client and Server Deployment on Vercel, Google Analytics Setup, and AI and overall Project Integration
-- **Abdul Rehman**: Back-end Development using Node JS and Express JS, Postgres Database Creation and Deployment on Azure, and Support with configuring AI Component
+- **Sunny Shaban Ali**: Front-end Development using React JS, API testing with Postman, Client and Server Deployment on Vercel, Google Analytics Setup, and AI and overall Project Integration
+- **Abdul Rehman**: Back-end Development using Node JS and Express JS, API testing with Postman, Postgres Database Creation and Deployment on Azure, and Support with configuring AI Component
 - **Burhanuddin**: Ideation, Figma Design, Support with Azure Deployment, and Demo Slides Preparation
 - **Allison**: Ideation, Figma Design, and Demo Slides Preparation
 
