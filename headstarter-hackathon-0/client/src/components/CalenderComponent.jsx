@@ -103,9 +103,9 @@ const CalendarComponent = () => {
                     className="calendar-day"
                     onClick={() => events.length > 0 && handleShow(dayStr)}
                 >
-                    <span className='day'>{day}</span>
+                    <span>{day}</span>
                     {events.length > 0 && (
-                        <span style={{ cursor: 'pointer', fontSize: '0.8rem' }} className="activity-count">{events.length} {events.length === 1 ? 'Activity' : 'Activities'}</span>
+                        <span style={{cursor: 'pointer', fontSize: '0.8rem'}} className="activity-count">{events.length} {events.length === 1 ? 'Activity' : 'Activities'}</span>
                     )}
                 </motion.div>
             );
@@ -145,7 +145,7 @@ const CalendarComponent = () => {
                     {renderDays()}
                 </div>
 
-                <Modal show={showModal} onHide={handleClose} size="lg" style={{ zIndex: "10001", position: "absolute", top: "50%" }}>
+                <Modal show={showModal} onHide={handleClose} size="lg">
                     <Modal.Header closeButton>
                         <Modal.Title>Activities on {selectedDate}</Modal.Title>
                     </Modal.Header>
@@ -166,7 +166,7 @@ const CalendarComponent = () => {
                         )}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button style={{ backgroundColor: '#6f42c1', color: '#f8f9fa' }} variant="secondary" onClick={handleClose}>
+                        <Button style={{backgroundColor: '#6f42c1', color: '#f8f9fa'}} variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
                     </Modal.Footer>

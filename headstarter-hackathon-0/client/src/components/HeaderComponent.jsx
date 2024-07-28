@@ -1,11 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from '../assets/images/logo.svg';
+import navIcon1 from '../assets/images/nav-icon1.svg';
+
 
 const HeaderComponent = () => {
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
-  const sections = useRef({});
 
   useEffect(() => {
     const onScroll = () => {
@@ -20,40 +21,6 @@ const HeaderComponent = () => {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveLink(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 } // Adjust this threshold as needed
-    );
-
-    const sectionElements = document.querySelectorAll('section');
-    sectionElements.forEach((section) => {
-      sections.current[section.id] = section;
-      observer.observe(section);
-    });
-
-    const handleScroll = () => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        setActiveLink('ai');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      sectionElements.forEach((section) => {
-        observer.unobserve(section);
-      });
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
@@ -74,6 +41,11 @@ const HeaderComponent = () => {
               <Nav.Link href="#activities" className={activeLink === 'activities' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('activities')}>Activities</Nav.Link>
               <Nav.Link href="#ai" className={activeLink === 'ai' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('ai')}>AI</Nav.Link>
             </Nav>
+            <span className="navbar-text">
+              <div className="social-icon">
+                <a href="https://www.github.com/sunnyallana/headstarter-hackathon-0" target="_blank " rel="noopener"><img style={{height: '2rem', width: '2rem'}} src={navIcon1} alt="sunny-shaban-ali-allana-repo-link" /></a>
+              </div>
+            </span>
           </Navbar.Collapse>
         </Container>
       </Navbar>
