@@ -6,10 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function ChatComponent() {
   const [messages, setMessages] = useState([]);
-  const [startdate, setStartdate] = useState('28 july 10 pm');
-  const [enddate, setEnddate] = useState('29 july 10 pm');
-  const [Project, setProject] = useState('Portfolio Website');
-  const [input, setInput] = useState(`Prepare me a time table to finish ${Project} task that starts on ${startdate} and end om ${enddate}`);
+  const [input, setInput] = useState(`Prepare me a time table to finish Portfolio Website task that starts on 28 july 10 pm and end om 29 july 10 pm`);
   const [loading, setLoading] = useState(false);
 
   const handleSendMessage = async () => {
