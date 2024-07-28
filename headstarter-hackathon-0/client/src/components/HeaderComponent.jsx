@@ -39,10 +39,19 @@ const HeaderComponent = () => {
       observer.observe(section);
     });
 
+    const handleScroll = () => {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        setActiveLink('ai');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
       sectionElements.forEach((section) => {
         observer.unobserve(section);
       });
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

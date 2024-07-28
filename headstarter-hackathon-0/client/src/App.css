@@ -7,19 +7,21 @@
 
 /************ Custom Font ************/
 @font-face {
-	font-family: Centra;
-	src: url('./assets/fonts/CentraNo2-Bold.ttf');
-	font-weight: 700;
+  font-family: Centra;
+  src: url('./assets/fonts/CentraNo2-Bold.ttf');
+  font-weight: 700;
 }
+
 @font-face {
-	font-family: Centra;
-	src: url('./assets/fonts/CentraNo2-Medium.ttf');
-	font-weight: 500;
+  font-family: Centra;
+  src: url('./assets/fonts/CentraNo2-Medium.ttf');
+  font-weight: 500;
 }
+
 @font-face {
-	font-family: Centra;
-	src: url('./assets/fonts/CentraNo2-Book.ttf');
-	font-weight: 400;
+  font-family: Centra;
+  src: url('./assets/fonts/CentraNo2-Book.ttf');
+  font-weight: 400;
 }
 
 /************ Default Css ************/
@@ -47,14 +49,23 @@ body {
   font-family: 'Centra', sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
   color: var(--white);
   line-height: normal;
 }
 
-p, a, li, button, ul {
+p,
+a,
+li,
+button,
+ul {
   margin: 0;
   padding: 0;
   line-height: normal;
@@ -75,23 +86,25 @@ button {
   background-color: transparent;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
 @media (min-width:1700px) {
-	main .container {
-		max-width: 100%;
-		padding: 0 150px;
-	}
+  main .container {
+    max-width: 100%;
+    padding: 0 150px;
+  }
 }
 
 p.success {
-	color: green;
+  color: green;
 }
 
 p.danger {
-	color: red;
+  color: red;
 }
 
 /************ Navbar Css ************/
@@ -101,10 +114,10 @@ nav.navbar {
   width: 100%;
   top: 0;
   z-index: 9999;
-  transition:  0.32s ease-in-out;
+  transition: 0.32s ease-in-out;
 }
 
-.nav-logo{
+.nav-logo {
   height: 4.5rem;
   width: 4.5rem;
 }
@@ -114,9 +127,11 @@ nav.navbar.scrolled {
   padding: 0px 0;
   background-color: #121212;
 }
+
 nav.navbar a.navbar-brand {
-    width: 9%;
+  width: 9%;
 }
+
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
   color: #fff !important;
@@ -125,14 +140,17 @@ nav.navbar .navbar-nav .nav-link.navbar-link {
   font-size: 18px;
   opacity: 0.75;
 }
+
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
 nav.navbar .navbar-nav a.nav-link.navbar-link.active {
-    opacity: 1;
+  opacity: 1;
 }
+
 span.navbar-text {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
+
 .navbar-text button {
   font-weight: 700;
   color: #fff;
@@ -140,13 +158,15 @@ span.navbar-text {
   padding: 18px 34px;
   font-size: 18px;
   margin-left: 18px;
-	position: relative;
-	background-color: transparent;
-	transition: 0.3s ease-in-out;
+  position: relative;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
 }
+
 .navbar-text button span {
   z-index: 1;
 }
+
 .navbar-text button::before {
   content: "";
   width: 0%;
@@ -158,20 +178,24 @@ span.navbar-text {
   z-index: -1;
   transition: 0.3s ease-in-out;
 }
+
 .navbar-text button:hover {
   color: #121212;
 }
+
 .navbar-text button:hover::before {
-	content: "";
-	width: 100%;
-	height: 100%;
-	position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
+
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
-	outline: none;
-    box-shadow: none;
+  outline: none;
+  box-shadow: none;
 }
+
 nav.navbar .navbar-toggler-icon {
   width: 24px;
   height: 17px;
@@ -181,45 +205,54 @@ nav.navbar .navbar-toggler-icon {
   transition: all 300ms linear;
   top: -2px;
 }
+
 nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #fff;
 }
+
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
-	width: 24px;
-	position: absolute;
-	height: 2px;
-	background-color: #fff;
-	top: 0;
-	left: 0;
-	content: '';
-	z-index: 2;
-	transition: all 300ms linear;
+  width: 24px;
+  position: absolute;
+  height: 2px;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  content: '';
+  z-index: 2;
+  transition: all 300ms linear;
 }
+
 nav.navbar .navbar-toggler-icon:after {
-	top: 8px;
+  top: 8px;
 }
+
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
-	transform: rotate(45deg);
-	background-color: #fff;
-	height: 2px;
+  transform: rotate(45deg);
+  background-color: #fff;
+  height: 2px;
 }
+
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
-	transform: translateY(8px) rotate(-45deg);
-	background-color: #fff;
-	height: 2px;
+  transform: translateY(8px) rotate(-45deg);
+  background-color: #fff;
+  height: 2px;
 }
+
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-	border-color: transparent;
+  border-color: transparent;
 }
 
 /* Banner */
 
 .banner {
   margin-top: 0;
-  height: 750px;
-  padding: 260px 0 100px 0;
- }
+  height: 100%;
+  padding: 18% 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .banner h1 {
   font-size: 65px;
@@ -229,6 +262,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-bottom: 20px;
   display: block;
 }
+
 .banner p {
   color: #B8B8B8;
   font-size: 28px;
@@ -236,6 +270,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1.5em;
   width: 96%;
 }
+
 .banner button {
   color: #fff;
   font-weight: 700;
@@ -245,41 +280,48 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: flex;
   align-items: center;
 }
+
 .banner button svg {
   font-size: 25px;
   margin-left: 10px;
   transition: 0.3s ease-in-out;
   line-height: 1;
 }
+
 .banner button:hover svg {
   margin-left: 25px;
 }
+
 .banner img {
   animation: updown 3s linear infinite;
 }
+
 @keyframes updown {
-    0% {
-        transform: translateY(-20px);
-    }
-    50% {
-        transform: translateY(20px);
-    }
-    100% {
-        transform: translateY(-20px);
-    }
+  0% {
+    transform: translateY(-20px);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
 }
-.txt-rotate > .wrap {
+
+.txt-rotate>.wrap {
   border-right: 0.08em solid #666;
 }
 
 
-.calender-h1{
-font-size: 65px;
-font-weight: 700;
-letter-spacing: 0.8px;
-line-height: 1;
-margin-bottom: 20px;
-display: block;
+.calender-h1 {
+  font-size: 65px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
 }
 
 
@@ -297,29 +339,37 @@ display: block;
 
 .calendar-navigation {
   display: flex;
-  flex-direction: row; /* Align items horizontally */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  flex-direction: row;
+  /* Align items horizontally */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
   width: 100%;
   max-width: 1200px;
   margin-bottom: 20px;
-  gap: 20px; /* Space between buttons and month name */
+  gap: 20px;
+  /* Space between buttons and month name */
 }
 
 .calendar-navigation button {
-  font-size: 14px; /* Default button font size */
-  padding: 8px 16px; /* Default button padding */
+  font-size: 14px;
+  /* Default button font size */
+  padding: 8px 16px;
+  /* Default button padding */
 }
 
 .calendar-navigation span {
-  font-size: 20px; /* Default month name font size */
+  font-size: 20px;
+  /* Default month name font size */
   font-weight: bold;
 }
 
 /* Calendar Grid */
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjusted for smaller cards */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* Adjusted for smaller cards */
   gap: 10px;
   max-width: 1200px;
   width: 100%;
@@ -329,28 +379,36 @@ display: block;
 .calendar-day {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  padding: 10px; /* Reduced padding */
+  justify-content: center;
+  /* Center content vertically */
+  align-items: center;
+  /* Center content horizontally */
+  padding: 10px;
+  /* Reduced padding */
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
   color: #000;
-  height: 120px; /* Reduced height */
+  height: 120px;
+  /* Reduced height */
   box-sizing: border-box;
   position: relative;
-  overflow: hidden; /* Ensure content doesn't overflow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  overflow: hidden;
+  /* Ensure content doesn't overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth hover effect */
 }
 
 .calendar-day span {
-  font-size: 18px; /* Adjusted font size */
+  font-size: 24px;
+  /* Adjusted font size */
   font-weight: bold;
 }
 
 .activity-count {
-  font-size: 14px; /* Font size for activity count */
+  font-size: 14px;
+  /* Font size for activity count */
   color: #6f42c1;
   margin-top: 5px;
   display: block;
@@ -372,7 +430,8 @@ display: block;
 
 .activity-detail p {
   margin: 5px 0;
-  font-size: 14px; /* Smaller font size */
+  font-size: 14px;
+  /* Smaller font size */
 }
 
 .activity-detail p strong {
@@ -383,16 +442,21 @@ display: block;
 .modal-content {
   background-color: #fff;
   color: #000;
-  max-height: 80vh; /* Limit modal height to viewport height */
-  overflow: hidden; /* Hide overflow on the main modal container */
-  margin-top: 10%; /* Adjust margin to move modal down */
+  max-height: 80vh;
+  /* Limit modal height to viewport height */
+  overflow: hidden;
+  /* Hide overflow on the main modal container */
+  margin-top: 10%;
+  /* Adjust margin to move modal down */
 }
 
 .modal-header {
   background-color: #6f42c1;
   color: #fff;
-  font-size: 16px; /* Decrease font size for better visibility */
-  padding: 10px; /* Adjust padding for title visibility */
+  font-size: 16px;
+  /* Decrease font size for better visibility */
+  padding: 10px;
+  /* Adjust padding for title visibility */
 }
 
 .modal-footer {
@@ -401,70 +465,86 @@ display: block;
 
 .modal-body {
   color: #000;
-  font-size: 14px; /* Adjust font size for readability */
-  max-height: calc(80vh - 56px); /* Leave space for header and footer */
-  overflow-y: auto; /* Enable vertical scrolling */
+  font-size: 14px;
+  /* Adjust font size for readability */
+  max-height: calc(80vh - 56px);
+  /* Leave space for header and footer */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .calendar-navigation button {
-    font-size: 12px; /* Reduce button font size for smaller screens */
-    padding: 6px 12px; /* Reduce button padding for smaller screens */
+    font-size: 12px;
+    /* Reduce button font size for smaller screens */
+    padding: 6px 12px;
+    /* Reduce button padding for smaller screens */
   }
 
   .calendar-navigation span {
-    font-size: 18px; /* Reduce month name font size for smaller screens */
+    font-size: 18px;
+    /* Reduce month name font size for smaller screens */
   }
 
   .calendar-grid {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Further reduce card size */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    /* Further reduce card size */
   }
 
   .calendar-day {
-    padding: 8px; /* Further reduce padding for smaller screens */
-    height: auto; /* Auto height for flexibility */
-  }
-
-  .calendar-day span {
-    font-size: 16px; /* Adjust font size for smaller screens */
+    padding: 8px;
+    /* Further reduce padding for smaller screens */
+    /* height: auto; */
+    /* Auto height for flexibility */
   }
 
   .activity-count {
-    font-size: 12px; /* Adjust font size for activity count on smaller screens */
+    font-size: 12px;
+    /* Adjust font size for activity count on smaller screens */
   }
 }
 
 @media (max-width: 576px) {
   .calendar-navigation button {
-    font-size: 10px; /* Further reduce button font size for very small screens */
-    padding: 4px 8px; /* Further reduce button padding */
+    font-size: 10px;
+    /* Further reduce button font size for very small screens */
+    padding: 4px 8px;
+    /* Further reduce button padding */
   }
 
   .calendar-navigation span {
-    font-size: 16px; /* Further reduce month name font size for very small screens */
+    font-size: 16px;
+    /* Further reduce month name font size for very small screens */
   }
 
   .calendar-grid {
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Further reduce card size */
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    /* Further reduce card size */
   }
 
   .calendar-day {
-    padding: 6px; /* Further reduce padding */
-    height: auto; /* Auto height for flexibility */
+    padding: 6px;
+    /* Further reduce padding */
+    height: auto;
+    /* Auto height for flexibility */
   }
 
   .calendar-day span {
-    font-size: 14px; /* Further adjust font size */
+    font-size: 14px;
+    /* Further adjust font size */
   }
 
   .activity-detail {
-    font-size: 12px; /* Further reduce font size for better fit */
-    padding: 6px; /* Further reduce padding */
-  }  
+    font-size: 12px;
+    /* Further reduce font size for better fit */
+    padding: 6px;
+    /* Further reduce padding */
+  }
 
   .activity-detail p {
-    font-size: 12px; /* Further reduce font size */
+    font-size: 12px;
+    /* Further reduce font size */
   }
 }
 
@@ -477,117 +557,197 @@ display: block;
 }
 
 .btn {
-  font-size: 1rem; /* Default font size */
+  font-size: 1rem;
+  /* Default font size */
   border: none;
   outline: none;
 }
 
 @media (max-width: 768px) {
   .btn {
-    font-size: 0.875rem; /* Adjust font size for smaller screens */
+    font-size: 0.875rem;
+    /* Adjust font size for smaller screens */
   }
 }
 
 @media (max-width: 576px) {
   .btn {
-    font-size: 0.75rem; /* Further adjust font size for very small screens */
+    font-size: 0.75rem;
+    /* Further adjust font size for very small screens */
   }
 }
 
-.wrapper{
-    width:200px;
-    height:60px;
-    position: relative;
-    left:50%;
-    top:50%;
-    transform: translate(-50%, -50%);
+.wrapper {
+  width: 200px;
+  height: 60px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #6f42c1;
+  /* New color */
+  left: 15%;
+  transform-origin: 50%;
+  animation: circle .5s alternate infinite ease;
+}
+
+@keyframes circle {
+  0% {
+    top: 60px;
+    height: 5px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.7);
   }
-  .circle{
-    width:20px;
-    height:20px;
-    position: absolute;
+
+  40% {
+    height: 20px;
     border-radius: 50%;
-    background-color: #6f42c1; /* New color */
-    left:15%;
-    transform-origin: 50%;
-    animation: circle .5s alternate infinite ease;
+    transform: scaleX(1);
   }
-  
-  @keyframes circle{
-    0%{
-        top:60px;
-        height:5px;
-        border-radius: 50px 50px 25px 25px;
-        transform: scaleX(1.7);
-    }
-    40%{
-        height:20px;
-        border-radius: 50%;
-        transform: scaleX(1);
-    }
-    100%{
-        top:0%;
-    }
+
+  100% {
+    top: 0%;
   }
-  .circle:nth-child(2){
-    left:45%;
-    animation-delay: .2s;
+}
+
+.circle:nth-child(2) {
+  left: 45%;
+  animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+
+.shadow {
+  width: 20px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .5);
+  position: absolute;
+  top: 62px;
+  transform-origin: 50%;
+  z-index: -1;
+  left: 15%;
+  filter: blur(1px);
+  animation: shadow .5s alternate infinite ease;
+}
+
+@keyframes shadow {
+  0% {
+    transform: scaleX(1.5);
   }
-  .circle:nth-child(3){
-    left:auto;
-    right:15%;
-    animation-delay: .3s;
+
+  40% {
+    transform: scaleX(1);
+    opacity: .7;
   }
-  .shadow{
-    width:20px;
-    height:4px;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,.5);
-    position: absolute;
-    top:62px;
-    transform-origin: 50%;
-    z-index: -1;
-    left:15%;
-    filter: blur(1px);
-    animation: shadow .5s alternate infinite ease;
+
+  100% {
+    transform: scaleX(.2);
+    opacity: .4;
   }
-  
-  @keyframes shadow{
-    0%{
-        transform: scaleX(1.5);
-    }
-    40%{
-        transform: scaleX(1);
-        opacity: .7;
-    }
-    100%{
-        transform: scaleX(.2);
-        opacity: .4;
-    }
+}
+
+.shadow:nth-child(4) {
+  left: 45%;
+  animation-delay: .2s
+}
+
+.shadow:nth-child(5) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+
+.gradientText {
+  background: #1e1e1e;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bgColor {
+  background: -webkit-linear-gradient(90deg, rgba(106, 44, 112, 1) 21%, #6f42c1 83%);
+}
+
+.wrapper span {
+  position: absolute;
+  top: 75px;
+  font-family: 'Lato';
+  font-size: 20px;
+  letter-spacing: 12px;
+  color: #cecece;
+  /* New color */
+  left: 15%;
+}
+
+.hero-h1 {
+  text-wrap: wrap;
+}
+
+@media screen and (max-width: 992px) {}
+
+@media screen and (max-width: 767px) {
+  #basic-navbar-nav {
+    padding: 0 0 10px 0;
   }
-  .shadow:nth-child(4){
-    left: 45%;
-    animation-delay: .2s
+
+  .calender-h1 {
+    font-size: 40px;
   }
-  .shadow:nth-child(5){
-    left:auto;
-    right:15%;
-    animation-delay: .3s;
+
+  .hero-h1 {
+    padding: 0 10px;
+    font-size: 60px !important;
   }
-  .gradientText {
-    background: #1e1e1e;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+  .hero-p {
+    padding: 0 10px;
   }
-  .bgColor{
-    background: -webkit-linear-gradient(90deg, rgba(106,44,112,1) 21%, #6f42c1 83%);
+
+  .calendar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
-  .wrapper span{
-    position: absolute;
-    top:75px;
-    font-family: 'Lato';
-    font-size: 20px;
-    letter-spacing: 12px;
-    color: #cecece; /* New color */
-    left:15%;
+}
+
+.form-control.flex-grow-1 {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.btn-go {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+@media screen and (max-width: 576px) {
+  .banner {
+    padding: 40% 0 20% 0;
   }
+
+  .hero-h1 {
+    font-size: 40px !important;
+  }
+
+  .hero-p {
+    font-size: 25px !important;
+  }
+
+  .activity-count {
+    font-size: 9px !important;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    /* Further reduce card size */
+  }
+}

@@ -50,11 +50,11 @@ export default function ChatComponent() {
         initial={{ y: 90, scale: 0.7 }}
         whileInView={{ y: 0, scale: 1 }}
         transition={{ duration: 1 }}
-        className="container w-50 rounded h-100 bgColor"
-        style={{ margin: "10rem 0" }}
+        className="container mx-2  rounded bgColor"
+        style={{ margin: "5rem 0" }}
       >
-        <h1 className="fw-bold text-light text-center mt-4">Chat Now</h1>
-        <div className="bg-white w-100 shadow-lg rounded overflow-hidden">
+        <h1 className="fw-bold text-light text-center my-4">Chat Now</h1>
+        <div className="bg-white w-100 shadow-lg rounded overflow-hidden mb-4">
           <div className="p-4 h-50 overflow-auto mb-4">
             {messages.map((msg, index) => (
               <div key={index} className={`d-flex ${msg.user ? 'justify-content-end' : 'justify-content-start'} mb-2`}>
@@ -83,7 +83,7 @@ export default function ChatComponent() {
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
             <button
-              className="btn btn-primary ml-2"
+              className="btn btn-primary btn-go"
               onClick={handleSendMessage}
             >
               <FaPaperPlane />
