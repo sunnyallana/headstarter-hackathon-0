@@ -9,6 +9,30 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// CORS configuration
+const allowedOrigin = 'https://headstarter-hackathon-0-f.vercel.app';
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (origin === allowedOrigin || !origin) {  // Allow requests with no origin (like from local development)
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+// Apply CORS middleware globally
+app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  if (req.method !== 'GET') {
+    res.status(405).send('Method Not Allowed');
+  } else {
+    next();
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 
 const db = new Client({
