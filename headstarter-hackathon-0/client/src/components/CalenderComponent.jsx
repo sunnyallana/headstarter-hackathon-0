@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const CalendarComponent = () => {
     const [showModal, setShowModal] = useState(false);
@@ -23,14 +23,6 @@ const CalendarComponent = () => {
             const endOfWeek = new Date(startOfWeek);
             endOfWeek.setDate(endOfWeek.getDate() + 6);
 
-            // const response = await axios.get('http://localhost:4000/weeklydata', {
-            //     params: {
-            //         start_date: startOfWeek.toISOString().split('T')[0],
-            //         end_date: endOfWeek.toISOString().split('T')[0],
-            //     },
-            // });
-
-            
             const response = await axios.get('https://headstarter-hackathon-0-b.vercel.app/weeklydata', {
                 params: {
                     start_date: startOfWeek.toISOString().split('T')[0],
@@ -100,19 +92,20 @@ const CalendarComponent = () => {
             const events = getEventsForDate(dayStr);
             calendarDays.push(
                 <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{
-                duration: 0.5, // Slightly shorter duration
-                ease: "easeOut", // Smooth easing
-                delay: 0.05, // Delay before animation starts
-                }}
-                key={day} className="calendar-day">
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{
+                        duration: 0.5, // Slightly shorter duration
+                        ease: "easeOut", // Smooth easing
+                        delay: 0.05, // Delay before animation starts
+                    }}
+                    key={day}
+                    className="calendar-day"
+                    onClick={() => events.length > 0 && handleShow(dayStr)}
+                >
                     <span>{day}</span>
                     {events.length > 0 && (
-                        <Button style={{backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none'}} variant="primary" onClick={() => handleShow(dayStr)}>
-                            View Activities
-                        </Button>
+                        <span style={{cursor: 'pointer', fontSize: '0.8rem'}} className="activity-count">{events.length} {events.length === 1 ? 'Activity' : 'Activities'}</span>
                     )}
                 </motion.div>
             );
@@ -124,61 +117,61 @@ const CalendarComponent = () => {
 
     return (
         <section id="activities">
-        <div className="calendar-wrapper">
-        <motion.div
-      className="calendar-navigation"
-      initial={{ y: 20, opacity: 0 }} // Initial position and opacity
-      whileInView={{ y: 0, opacity: 1 }} // Final position and opacity
-      transition={{ duration: 1, ease: "easeOut" }} // Animation settings
-    >
-      <Button
-        style={{ backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none' }}
-        onClick={handlePrevMonth}
-      >
-        Previous
-      </Button>
-      <span>
-        {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-      </span>
-      <Button
-        style={{ backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none' }}
-        onClick={handleNextMonth}
-      >
-        Next
-      </Button>
-    </motion.div>
-
-            <div className="calendar-grid">
-                {renderDays()}
-            </div>
-
-            <Modal show={showModal} onHide={handleClose} size="lg">
-                <Modal.Header closeButton>
-                    <Modal.Title>Activities on {selectedDate}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {selectedDateEvents.length === 0 ? (
-                        <p>No activities or events for this day.</p>
-                    ) : (
-                        <ul className="activity-list">
-                            {selectedDateEvents.map(event => (
-                                <li key={event.id} className="activity-detail">
-                                    <p><strong>Title:</strong> {event.title}</p>
-                                    <p><strong>Start Time:</strong> {event.startTime}</p>
-                                    <p><strong>End Time:</strong> {event.endTime}</p>
-                                    {event.speaker && <p><strong>Speaker:</strong> {event.speaker}</p>}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button style={{backgroundColor: '#6f42c1', color: '#f8f9fa'}} variant="secondary" onClick={handleClose}>
-                        Close
+            <div className="calendar-wrapper">
+                <motion.div
+                    className="calendar-navigation"
+                    initial={{ y: 20, opacity: 0 }} // Initial position and opacity
+                    whileInView={{ y: 0, opacity: 1 }} // Final position and opacity
+                    transition={{ duration: 1, ease: "easeOut" }} // Animation settings
+                >
+                    <Button
+                        style={{ backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none' }}
+                        onClick={handlePrevMonth}
+                    >
+                        Previous
                     </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+                    <span>
+                        {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                    </span>
+                    <Button
+                        style={{ backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none' }}
+                        onClick={handleNextMonth}
+                    >
+                        Next
+                    </Button>
+                </motion.div>
+
+                <div className="calendar-grid">
+                    {renderDays()}
+                </div>
+
+                <Modal show={showModal} onHide={handleClose} size="lg">
+                    <Modal.Header closeButton>
+                        <Modal.Title>Activities on {selectedDate}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {selectedDateEvents.length === 0 ? (
+                            <p>No activities or events for this day.</p>
+                        ) : (
+                            <ul className="activity-list">
+                                {selectedDateEvents.map(event => (
+                                    <li key={event.id} className="activity-detail">
+                                        <p><strong>Title:</strong> {event.title}</p>
+                                        <p><strong>Start Time:</strong> {event.startTime}</p>
+                                        <p><strong>End Time:</strong> {event.endTime}</p>
+                                        {event.speaker && <p><strong>Speaker:</strong> {event.speaker}</p>}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button style={{backgroundColor: '#6f42c1', color: '#f8f9fa'}} variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
         </section>
     );
 };

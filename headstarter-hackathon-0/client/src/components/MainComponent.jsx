@@ -6,7 +6,7 @@ const MainComponent = () => {
         <div className="main-component">
             <h1 className="calender-h1" style={{ marginTop: '10%', textAlign: 'center'}}>ACTIVITIES VIEW</h1>
             <CalendarComponent />
-            <h1 className="calender-h1" style={{ marginTop: '10%', textAlign: 'center'}}>AI</h1>
+            <h1 className="calender-h1" style={{ marginTop: '10%', textAlign: 'center'}}>AI CHAT BOT</h1>
             <ChatComponent />
         </div>
     );

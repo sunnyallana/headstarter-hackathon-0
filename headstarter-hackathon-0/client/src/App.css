@@ -286,6 +286,7 @@ display: block;
 /* Banner ends */
 
 /* Calendar Component Styles */
+/* General Styles */
 .calendar-wrapper {
   display: flex;
   flex-direction: column;
@@ -315,48 +316,28 @@ display: block;
   font-weight: bold;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .calendar-navigation button {
-    font-size: 12px; /* Reduce button font size for smaller screens */
-    padding: 6px 12px; /* Reduce button padding for smaller screens */
-  }
-
-  .calendar-navigation span {
-    font-size: 18px; /* Reduce month name font size for smaller screens */
-  }
-}
-
-@media (max-width: 576px) {
-  .calendar-navigation button {
-    font-size: 10px; /* Further reduce button font size for very small screens */
-    padding: 4px 8px; /* Further reduce button padding */
-  }
-
-  .calendar-navigation span {
-    font-size: 16px; /* Further reduce month name font size for very small screens */
-  }
-}
-
+/* Calendar Grid */
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjusted for smaller cards */
   gap: 10px;
   max-width: 1200px;
   width: 100%;
 }
 
+/* Calendar Day Card */
 .calendar-day {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  padding: 10px; /* Reduced padding */
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
   color: #000;
-  height: 200px;
+  height: 120px; /* Reduced height */
   box-sizing: border-box;
   position: relative;
   overflow: hidden; /* Ensure content doesn't overflow */
@@ -364,10 +345,18 @@ display: block;
 }
 
 .calendar-day span {
-  font-size: 22px;
+  font-size: 18px; /* Adjusted font size */
   font-weight: bold;
 }
 
+.activity-count {
+  font-size: 14px; /* Font size for activity count */
+  color: #6f42c1;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Activity List */
 .activity-list {
   list-style-type: none;
   padding: 0;
@@ -417,45 +406,62 @@ display: block;
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
-/* Media Queries for Smaller Screens */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
+  .calendar-navigation button {
+    font-size: 12px; /* Reduce button font size for smaller screens */
+    padding: 6px 12px; /* Reduce button padding for smaller screens */
+  }
+
+  .calendar-navigation span {
+    font-size: 18px; /* Reduce month name font size for smaller screens */
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Further reduce card size */
+  }
+
   .calendar-day {
-    padding: 15px; /* Adjust padding for smaller screens */
+    padding: 8px; /* Further reduce padding for smaller screens */
     height: auto; /* Auto height for flexibility */
   }
 
   .calendar-day span {
-    font-size: 18px;
+    font-size: 16px; /* Adjust font size for smaller screens */
   }
 
-  .calendar-navigation {
-    flex-direction: row; /* Keep horizontal alignment on small screens */
-    gap: 15px; /* Adjust gap for smaller screens */
-  }
-
-  .calendar-navigation button {
-    font-size: 12px; /* Further reduce button font size */
-    padding: 6px 12px; /* Further reduce button padding */
-  }
-
-  .calendar-navigation span {
-    font-size: 18px;
+  .activity-count {
+    font-size: 12px; /* Adjust font size for activity count on smaller screens */
   }
 }
 
 @media (max-width: 576px) {
+  .calendar-navigation button {
+    font-size: 10px; /* Further reduce button font size for very small screens */
+    padding: 4px 8px; /* Further reduce button padding */
+  }
+
+  .calendar-navigation span {
+    font-size: 16px; /* Further reduce month name font size for very small screens */
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Further reduce card size */
+  }
+
   .calendar-day {
-    padding: 10px; /* Further adjust padding for very small screens */
+    padding: 6px; /* Further reduce padding */
+    height: auto; /* Auto height for flexibility */
   }
 
   .calendar-day span {
-    font-size: 16px; /* Further reduce font size */
+    font-size: 14px; /* Further adjust font size */
   }
 
   .activity-detail {
     font-size: 12px; /* Further reduce font size for better fit */
     padding: 6px; /* Further reduce padding */
-  }
+  }  
 
   .activity-detail p {
     font-size: 12px; /* Further reduce font size */
