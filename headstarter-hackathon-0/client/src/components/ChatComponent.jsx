@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaPaperPlane } from "react-icons/fa";
-import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -28,15 +27,15 @@ export default function ChatComponent() {
 
         let botResponse = "";
         for await (const chunk of result.stream) {
-          const chunkText = chunk.text();
+          const chunkText = await chunk.text();
           botResponse += chunkText;
           setMessages((prevMessages) => {
             const lastMessage = prevMessages[prevMessages.length - 1];
             if (lastMessage && !lastMessage.user) {
-              lastMessage.text += chunkText;
+              lastMessage.text = botResponse; // Update the last message text
               return [...prevMessages.slice(0, -1), lastMessage];
             } else {
-              return [...prevMessages, { text: chunkText, user: false }];
+              return [...prevMessages, { text: botResponse, user: false }];
             }
           });
         }
