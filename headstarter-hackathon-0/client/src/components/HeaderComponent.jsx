@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from '../assets/images/logo.svg';
+import navIcon1 from '../assets/images/nav-icon1.svg';
+
 
 const HeaderComponent = () => {
   const [activeLink, setActiveLink] = useState('home');
@@ -39,6 +41,11 @@ const HeaderComponent = () => {
               <Nav.Link href="#activities" className={activeLink === 'activities' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('activities')}>Activities</Nav.Link>
               <Nav.Link href="#ai" className={activeLink === 'ai' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('ai')}>AI</Nav.Link>
             </Nav>
+            <span className="navbar-text">
+              <div className="social-icon">
+                <a href="https://www.github.com/sunnyallana/headstarter-hackathon-0" target="_blank " rel="noopener"><img style={{height: '2rem', width: '2rem'}} src={navIcon1} alt="sunny-shaban-ali-allana-repo-link" /></a>
+              </div>
+            </span>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function ChatComponent() {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState(`Prepare me a time table to finish Portfolio Website task that starts on 28 july 10 pm and end om 29 july 10 pm`);
+  const [input, setInput] = useState(`Prepare me a time table to finish Portfolio Website task that starts on 28 July 10 PM and ends on 29 July 10 PM`);
   const [loading, setLoading] = useState(false);
 
   const handleSendMessage = async () => {
@@ -45,20 +45,18 @@ export default function ChatComponent() {
 
   return (
     <section id='ai'>
-    <div className='d-flex justify-content-center align-items-center bgcolor'>
-      <motion.div
-        initial={{ y: 90, scale: 0.7 }}
-        whileInView={{ y: 0, scale: 1 }}
-        transition={{ duration: 1 }}
-        className="container w-50 rounded h-100 bgColor"
-        style={{ margin: "10rem 0" }}
-      >
-        <h1 className="fw-bold text-light text-center mt-4">Chat Now</h1>
-        <div className="bg-white w-100 shadow-lg rounded overflow-hidden">
-          <div className="p-4 h-50 overflow-auto mb-4">
+      <div className='d-flex justify-content-center align-items-center'>
+        <motion.div
+          initial={{ y: 90, scale: 0.7 }}
+          whileInView={{ y: 0, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="chat-container"
+        >
+          <h1 className="chat-header">Chat Now</h1>
+          <div className="message-container">
             {messages.map((msg, index) => (
-              <div key={index} className={`d-flex ${msg.user ? 'justify-content-end' : 'justify-content-start'} mb-2`}>
-                <div className={`rounded p-2 shadow-md overflow-hidden d-flex flex-wrap ${msg.user ? 'bgColor text-light' : 'bg-dark gradientText'}`}>
+              <div key={index} className={`message ${msg.user ? 'user' : 'bot'}`}>
+                <div className="bubble">
                   <ReactMarkdown>
                     {msg.text.slice(0, 1000)}
                   </ReactMarkdown>
@@ -67,31 +65,26 @@ export default function ChatComponent() {
             ))}
             {loading && (
               <div className="text-center mt-2 mb-4">
-                <div className="spinner-border gradientText" role="status">
-                  <span className="sr-only">Loading...</span>
+                <div className="spinner-border" role="status">
+                  <span style={{color: 'black'}} className="sr-only">Loading...</span>
                 </div>
               </div>
             )}
           </div>
-          <div className="p-3 border-top d-flex" style={{ borderColor: "gray" }}>
+          <div className="chat-input">
             <input
               type="text"
-              className="form-control flex-grow-1"
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
-            <button
-              className="btn btn-primary ml-2"
-              onClick={handleSendMessage}
-            >
+            <button onClick={handleSendMessage}>
               <FaPaperPlane />
             </button>
           </div>
-        </div>
-      </motion.div>
-    </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

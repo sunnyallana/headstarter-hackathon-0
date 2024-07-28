@@ -133,6 +133,47 @@ span.navbar-text {
     display: flex;
     align-items: center;
 }
+
+.social-icon {
+    display: inline-block;
+    margin-left: 14px;
+}
+.social-icon a {
+    width: 42px;
+    height: 42px;
+    background: rgba(217, 217, 217, 0.1);
+    display: inline-flex;
+    border-radius: 50%;
+    margin-right: 6px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.social-icon a::before {
+    content: "";
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transform: scale(0);
+	transition: 0.3s ease-in-out;
+}
+.social-icon a:hover::before {
+    transform: scale(1);
+}
+.social-icon a img {
+	width: 40%;
+	z-index: 1;
+	transition: 0.3s ease-in-out;
+}
+.social-icon a:hover img {
+	filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
+}
+
+
+
 .navbar-text button {
   font-weight: 700;
   color: #fff;
@@ -214,12 +255,12 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 /* Banner */
-
+/* Hero Section Styles */
 .banner {
-  margin-top: 0;
-  height: 750px;
-  padding: 260px 0 100px 0;
- }
+  height: 500px;
+  padding: 230px 0 100px 0;
+  position: relative; /* Ensure positioning for z-index if needed */
+}
 
 .banner h1 {
   font-size: 65px;
@@ -229,13 +270,15 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-bottom: 20px;
   display: block;
 }
+
 .banner p {
   color: #B8B8B8;
-  font-size: 28px;
+  font-size: 20px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
   width: 96%;
 }
+
 .banner button {
   color: #fff;
   font-weight: 700;
@@ -245,48 +288,61 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: flex;
   align-items: center;
 }
+
 .banner button svg {
   font-size: 25px;
   margin-left: 10px;
   transition: 0.3s ease-in-out;
   line-height: 1;
 }
+
 .banner button:hover svg {
   margin-left: 25px;
 }
-.banner img {
-  animation: updown 3s linear infinite;
-}
-@keyframes updown {
-    0% {
-        transform: translateY(-20px);
-    }
-    50% {
-        transform: translateY(20px);
-    }
-    100% {
-        transform: translateY(-20px);
-    }
-}
+
 .txt-rotate > .wrap {
   border-right: 0.08em solid #666;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .banner {
+    height: auto;
+    padding: 70% 0 20% 0; /* Adjust padding to provide space at the top and bottom */
+  }
 
-.calender-h1{
-font-size: 65px;
-font-weight: 700;
-letter-spacing: 0.8px;
-line-height: 1;
-margin-bottom: 20px;
-display: block;
+  .banner h1 {
+    font-size: 3rem; /* Adjust font size for mobile screens */
+    margin-bottom: 10px; /* Reduce margin at the bottom */
+  }
+
+  .banner p {
+    font-size: 1rem; /* Adjust font size for mobile screens */
+    margin-bottom: 20px; /* Adjust margin at the bottom */
+  }
 }
+
+/* Ensure spacing below the hero section */
+#activities {
+  margin-top: 80px; /* Adjust based on the actual size of the hero section */
+}
+
+
 
 
 /* Banner ends */
 
 /* Calendar Component Styles */
-/* General Styles */
+.calender-h1{
+  font-size: 65px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+  }
+  
+
 .calendar-wrapper {
   display: flex;
   flex-direction: column;
@@ -334,7 +390,6 @@ display: block;
   padding: 10px; /* Reduced padding */
   background-color: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
   color: #000;
   height: 120px; /* Reduced height */
@@ -344,16 +399,44 @@ display: block;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
 }
 
+.calendar-day:hover {
+  color: #fff; /* Change text color to white on hover */
+}
+
+/* Overlay Styles */
+.calendar-day::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(111, 66, 193, 1); /* Semi-transparent black */
+  transition: opacity 0.3s ease; /* Smooth transition for overlay */
+}
+
+.calendar-day:hover::before {
+  opacity: 1; /* Show overlay on hover */
+}
+
 .calendar-day span {
   font-size: 18px; /* Adjusted font size */
   font-weight: bold;
+  z-index: 1; /* Ensure text is above the overlay */
 }
 
+/* Specific Styles for Activity Count */
 .activity-count {
   font-size: 14px; /* Font size for activity count */
   color: #6f42c1;
   margin-top: 5px;
   display: block;
+  z-index: 1; /* Ensure text is above the overlay */
+}
+
+.calendar-day:hover .activity-count {
+  color: #fff; /* Change activity count color to white on hover */
 }
 
 /* Activity List */
@@ -433,6 +516,11 @@ display: block;
   .activity-count {
     font-size: 12px; /* Adjust font size for activity count on smaller screens */
   }
+
+  /* Adjust modal styles for smaller screens */
+  .modal-content {
+    margin-top: 20%; /* Increase margin to ensure header is visible */
+  }
 }
 
 @media (max-width: 576px) {
@@ -465,129 +553,164 @@ display: block;
 
   .activity-detail p {
     font-size: 12px; /* Further reduce font size */
+  }  
+
+  /* Further adjust modal styles for very small screens */
+  .modal-content {
+    margin-top: 30%; /* Increase margin for very small screens to ensure header visibility */
   }
 }
 
 
-/* Chat component */
-/* Responsive styling for the button */
-.text-center {
+/**/
+
+
+/* ChatComponent.css */
+
+/* Container for chat component */
+.chat-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 10rem 5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: #6f42c1; /* Background color set to white */
+  position: relative; /* For positioning the heading */
+}
+
+/* Header styling */
+.chat-header {
+  text-align: center;
+  color: white; /* Heading text color */
+  font-weight: bold;
+  margin-top: 2rem; /* Margin to space out from the top of the container */
+  margin-bottom: 1rem; /* Margin to space out from the container's content */
+  position: relative;
+  padding-bottom: 1rem; /* Padding to accommodate the boundary line */
+}
+
+/* Boundary between heading and content */
+.chat-header::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 2px;
+  background-color: #6f42c1; /* Boundary line color */
+  margin: 1rem auto 0; /* Center the line and add spacing */
+}
+
+/* Chat message container */
+.message-container {
+  height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: white; /* Background color set to white */
+}
+
+/* Chat input area */
+.chat-input {
+  margin-top: 5px;
+  border-radius: 5px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #6f42c1;
+  padding: 0.5rem;
+  background-color: white; /* Background color set to white */
 }
 
-.btn {
-  font-size: 1rem; /* Default font size */
+/* Input field styling */
+.chat-input input {
+  flex-grow: 1;
+  border: 1px solid #6f42c1;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  background-color: white; /* Background color set to white */
+}
+
+/* Send button styling */
+.chat-input button {
+  background-color: #6f42c1; /* Button color */
   border: none;
-  outline: none;
+  border-radius: 5px;
+  color: white; /* Button text color */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
+.chat-input button:hover {
+  background-color: #6f42c1; /* Slightly darker shade of purple */
+}
+
+/* Styling for messages */
+.message {
+  margin-bottom: 1rem;
+}
+
+.message.user {
+  text-align: right;
+}
+
+.message.bot {
+  text-align: left;
+}
+
+/* Message bubble styling */
+.message .bubble {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  max-width: 70%;
+  background-color: #6f42c1; /* Message bubble color */
+  color: white; /* Message text color */
+}
+
+.message.bot .bubble {
+  background-color: #6f42c1; /* Message bubble color for bot messages */
+  color: white; /* Message text color for bot messages */
+}
+
+/* Spinner styling */
+.spinner-border {
+  border-top-color: #6f42c1;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
-  .btn {
-    font-size: 0.875rem; /* Adjust font size for smaller screens */
+  .chat-container {
+    transform: scale(0.85); /* Scale down by 15% */
+    width: 95%; /* Adjust width for medium screens */
+    max-width: 500px; /* Adjust max-width */
+    margin: 8rem auto; /* Margin for small screens */
+  }
+
+  .message-container {
+    height: 300px; /* Adjust height */
   }
 }
 
 @media (max-width: 576px) {
-  .btn {
-    font-size: 0.75rem; /* Further adjust font size for very small screens */
+  .chat-container {
+    margin-top: 10%;
+    transform: scale(0.75); /* Scale down by 25% */
+    width: 100%; /* Full width for small screens */
+    max-width: 100%; /* No maximum width */
+    margin: 8rem 1rem; /* Margin for small screens with some left and right spacing */
+  }
+
+  .message-container {
+    height: 200px; /* Adjust height */
+  }
+
+  .chat-input input {
+    font-size: 0.875rem; /* Adjust font size for small screens */
+  }
+
+  .chat-input button {
+    font-size: 0.75rem; /* Further adjust font size */
   }
 }
-
-.wrapper{
-    width:200px;
-    height:60px;
-    position: relative;
-    left:50%;
-    top:50%;
-    transform: translate(-50%, -50%);
-  }
-  .circle{
-    width:20px;
-    height:20px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #6f42c1; /* New color */
-    left:15%;
-    transform-origin: 50%;
-    animation: circle .5s alternate infinite ease;
-  }
-  
-  @keyframes circle{
-    0%{
-        top:60px;
-        height:5px;
-        border-radius: 50px 50px 25px 25px;
-        transform: scaleX(1.7);
-    }
-    40%{
-        height:20px;
-        border-radius: 50%;
-        transform: scaleX(1);
-    }
-    100%{
-        top:0%;
-    }
-  }
-  .circle:nth-child(2){
-    left:45%;
-    animation-delay: .2s;
-  }
-  .circle:nth-child(3){
-    left:auto;
-    right:15%;
-    animation-delay: .3s;
-  }
-  .shadow{
-    width:20px;
-    height:4px;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,.5);
-    position: absolute;
-    top:62px;
-    transform-origin: 50%;
-    z-index: -1;
-    left:15%;
-    filter: blur(1px);
-    animation: shadow .5s alternate infinite ease;
-  }
-  
-  @keyframes shadow{
-    0%{
-        transform: scaleX(1.5);
-    }
-    40%{
-        transform: scaleX(1);
-        opacity: .7;
-    }
-    100%{
-        transform: scaleX(.2);
-        opacity: .4;
-    }
-  }
-  .shadow:nth-child(4){
-    left: 45%;
-    animation-delay: .2s
-  }
-  .shadow:nth-child(5){
-    left:auto;
-    right:15%;
-    animation-delay: .3s;
-  }
-  .gradientText {
-    background: #1e1e1e;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .bgColor{
-    background: -webkit-linear-gradient(90deg, rgba(106,44,112,1) 21%, #6f42c1 83%);
-  }
-  .wrapper span{
-    position: absolute;
-    top:75px;
-    font-family: 'Lato';
-    font-size: 20px;
-    letter-spacing: 12px;
-    color: #cecece; /* New color */
-    left:15%;
-  }
