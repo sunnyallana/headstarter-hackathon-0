@@ -30,10 +30,15 @@ export default function ChatComponent() {
         for await (const chunk of result.stream) {
           const chunkText = chunk.text();
           botResponse += chunkText;
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            { text: botResponse, user: false },
-          ]);
+          setMessages((prevMessages) => {
+            const lastMessage = prevMessages[prevMessages.length - 1];
+            if (lastMessage && !lastMessage.user) {
+              lastMessage.text += chunkText;
+              return [...prevMessages.slice(0, -1), lastMessage];
+            } else {
+              return [...prevMessages, { text: chunkText, user: false }];
+            }
+          });
         }
 
         setLoading(false);
