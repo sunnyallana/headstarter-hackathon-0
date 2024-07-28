@@ -23,7 +23,15 @@ const CalendarComponent = () => {
             const endOfWeek = new Date(startOfWeek);
             endOfWeek.setDate(endOfWeek.getDate() + 6);
 
-            const response = await axios.get('http://localhost:4000/weeklydata', {
+            // const response = await axios.get('http://localhost:4000/weeklydata', {
+            //     params: {
+            //         start_date: startOfWeek.toISOString().split('T')[0],
+            //         end_date: endOfWeek.toISOString().split('T')[0],
+            //     },
+            // });
+
+            
+            const response = await axios.get('https://headstarter-hackathon-0-b.vercel.app/weeklydata', {
                 params: {
                     start_date: startOfWeek.toISOString().split('T')[0],
                     end_date: endOfWeek.toISOString().split('T')[0],
