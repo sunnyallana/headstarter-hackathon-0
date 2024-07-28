@@ -13,9 +13,7 @@ const model = genAI.getGenerativeModel({
 
 export default function ChatComponent() {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState(
-    `Prepare me a time table to finish Portfolio Website task that starts on 28 July 10 pm and ends on 29 July 10 pm`
-  );
+  const [input, setInput] = useState(`Prepare me a time table to finish Portfolio Website task that starts on 28 July 10 PM and ends on 29 July 10 PM`);
   const [loading, setLoading] = useState(false);
 
   const handleSendMessage = async () => {
