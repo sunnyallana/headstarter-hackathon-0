@@ -25,7 +25,7 @@ EEVI was developed with a focus on simplicity and efficiency, catering to the ne
 
 For a detailed walkthrough of the EEVI web app, please watch the following video:
 
-[YouTube Link](https://youtu.be/kTg_-0rZMm4)
+[YouTube Link](https://youtu.be/RyYKJZefvKc)
 
 [View on Vercel](https://headstarter-hackathon-0-f.vercel.app/)
 
