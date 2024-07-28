@@ -1,79 +1,178 @@
-import React, { useState } from 'react';
-import { Modal, Button, Card, Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-const sampleActivities = [
-  { date: '2024-07-01', title: 'Meeting with Team', startTime: '10:00 AM', endTime: '11:00 AM', zoomLink: 'https://zoom.us/j/1234567890', speaker: 'John Doe' },
-  { date: '2024-07-02', title: 'Project Presentation', startTime: '02:00 PM', endTime: '03:00 PM', zoomLink: 'https://zoom.us/j/0987654321', speaker: 'Jane Smith' },
-];
+import axios from 'axios';
+import {motion} from 'framer-motion';
 
 const CalendarComponent = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedActivity, setSelectedActivity] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [currentDate, setCurrentDate] = useState(new Date(2024, 6)); // July 2024
+    const [activities, setActivities] = useState([]);
+    const [calendarEvents, setCalendarEvents] = useState([]);
 
-  const handleShow = (activity) => {
-    setSelectedActivity(activity);
-    setShowModal(true);
-  };
+    useEffect(() => {
+        fetchActivities();
+        fetchCalendarEvents();
+    }, [currentDate]);
 
-  const handleClose = () => setShowModal(false);
+    const fetchActivities = async () => {
+        try {
+            const startOfWeek = new Date(currentDate);
+            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+            const endOfWeek = new Date(startOfWeek);
+            endOfWeek.setDate(endOfWeek.getDate() + 6);
 
-  const renderDays = () => {
-    // Create a 2D array for days of the month
-    const daysInMonth = new Date(2024, 7, 0).getDate(); // Get number of days in July 2024
-    const calendarDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+            const response = await axios.get('http://localhost:4000/weeklydata', {
+                params: {
+                    start_date: startOfWeek.toISOString().split('T')[0],
+                    end_date: endOfWeek.toISOString().split('T')[0],
+                },
+            });
 
-    return calendarDays.map((day) => {
-      const dateStr = `2024-07-${day.toString().padStart(2, '0')}`;
-      const activities = sampleActivities.filter(activity => activity.date === dateStr);
+            const formattedActivities = response.data.map(event => ({
+                date: event.start_date.split(' ')[0],
+                title: event.event_name,
+                startTime: new Date(event.start_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                endTime: new Date(event.end_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                speaker: event.speaker || 'N/A', // Ensure 'speaker' is properly retrieved
+                id: event.event_id,
+            }));
 
-      return (
-        <Col xs={6} md={4} lg={3} key={day}>
-          <Card className="mb-3" style={{ borderRadius: '15px' }}>
-            <Card.Body>
-              <Card.Title>July {day}</Card.Title>
-              {activities.length ? activities.map((activity, index) => (
-                <Card.Text
-                  key={index}
-                  className="text-primary"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => handleShow(activity)}
-                >
-                  {activity.title}
-                </Card.Text>
-              )) : <Card.Text>No Activities</Card.Text>}
-            </Card.Body>
-          </Card>
-        </Col>
-      );
-    });
-  };
+            setActivities(formattedActivities);
+        } catch (error) {
+            console.error('Error fetching activities:', error);
+        }
+    };
 
-  return (
-    <div className="container-fluid d-flex justify-content-center align-items-center" style={{ marginTop: '70px' }}>
-      <Row>
-        {renderDays()}
-      </Row>
+    const fetchCalendarEvents = async () => {
+        try {
+            const response = await axios.get('https://www.googleapis.com/calendar/v3/calendars/c_bf9b2e848d3f6cb19d8e75fb210a554680303a8cfa5a626f10950801465ae0e2@group.calendar.google.com/events?key=AIzaSyCmO5hd0NfYV0yaePAva9PKhb4_IN1CdB8&maxResults=100');
+            const events = response.data.items.map(event => ({
+                date: event.start.dateTime.split('T')[0],
+                title: event.summary,
+                startTime: new Date(event.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                endTime: new Date(event.end.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                id: event.id,
+            }));
+            setCalendarEvents(events);
+        } catch (error) {
+            console.error('Error fetching calendar events:', error);
+        }
+    };
 
-      {/* Modal for activity details */}
-      {selectedActivity && (
-        <Modal show={showModal} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{selectedActivity.title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p><strong>Start Time:</strong> {selectedActivity.startTime}</p>
-            <p><strong>End Time:</strong> {selectedActivity.endTime}</p>
-            <p><strong>Zoom Link:</strong> <a href={selectedActivity.zoomLink} target="_blank" rel="noopener noreferrer">{selectedActivity.zoomLink}</a></p>
-            <p><strong>Speaker:</strong> {selectedActivity.speaker}</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      )}
-    </div>
-  );
+    const handleShow = (date) => {
+        setSelectedDate(date);
+        setShowModal(true);
+    };
+
+    const handleClose = () => setShowModal(false);
+
+    const handlePrevMonth = () => {
+        setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
+    };
+
+    const handleNextMonth = () => {
+        setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
+    };
+
+    const getEventsForDate = (date) => {
+        return [
+            ...activities.filter(activity => activity.date === date),
+            ...calendarEvents.filter(event => event.date === date)
+        ];
+    };
+
+    const renderDays = () => {
+        const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+        const calendarDays = [];
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+            const dayStr = date.toISOString().split('T')[0];
+            const events = getEventsForDate(dayStr);
+            calendarDays.push(
+                <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{
+                duration: 0.5, // Slightly shorter duration
+                ease: "easeOut", // Smooth easing
+                delay: 0.05, // Delay before animation starts
+                }}
+                key={day} className="calendar-day">
+                    <span>{day}</span>
+                    {events.length > 0 && (
+                        <Button style={{backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none'}} variant="primary" onClick={() => handleShow(dayStr)}>
+                            View Activities
+                        </Button>
+                    )}
+                </motion.div>
+            );
+        }
+        return calendarDays;
+    };
+
+    const selectedDateEvents = getEventsForDate(selectedDate);
+
+    return (
+        <section id="activities">
+        <div className="calendar-wrapper">
+        <motion.div
+      className="calendar-navigation"
+      initial={{ y: 20, opacity: 0 }} // Initial position and opacity
+      whileInView={{ y: 0, opacity: 1 }} // Final position and opacity
+      transition={{ duration: 1, ease: "easeOut" }} // Animation settings
+    >
+      <Button
+        style={{ backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none' }}
+        onClick={handlePrevMonth}
+      >
+        Previous
+      </Button>
+      <span>
+        {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+      </span>
+      <Button
+        style={{ backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none' }}
+        onClick={handleNextMonth}
+      >
+        Next
+      </Button>
+    </motion.div>
+
+            <div className="calendar-grid">
+                {renderDays()}
+            </div>
+
+            <Modal show={showModal} onHide={handleClose} size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title>Activities on {selectedDate}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {selectedDateEvents.length === 0 ? (
+                        <p>No activities or events for this day.</p>
+                    ) : (
+                        <ul className="activity-list">
+                            {selectedDateEvents.map(event => (
+                                <li key={event.id} className="activity-detail">
+                                    <p><strong>Title:</strong> {event.title}</p>
+                                    <p><strong>Start Time:</strong> {event.startTime}</p>
+                                    <p><strong>End Time:</strong> {event.endTime}</p>
+                                    {event.speaker && <p><strong>Speaker:</strong> {event.speaker}</p>}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button style={{backgroundColor: '#6f42c1', color: '#f8f9fa'}} variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+        </section>
+    );
 };
 
 export default CalendarComponent;

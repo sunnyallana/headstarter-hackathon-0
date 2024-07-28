@@ -35,6 +35,10 @@ html {
 }
 
 body {
+  background-image: url('./assets/images/banner-bg.jpg');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
@@ -99,6 +103,13 @@ nav.navbar {
   z-index: 9999;
   transition:  0.32s ease-in-out;
 }
+
+.nav-logo{
+  height: 4.5rem;
+  width: 4.5rem;
+}
+
+
 nav.navbar.scrolled {
   padding: 0px 0;
   background-color: #121212;
@@ -202,6 +213,375 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
 }
 
-/* Calender's CSS */
+/* Banner */
+
+.banner {
+  margin-top: 0;
+  height: 750px;
+  padding: 260px 0 100px 0;
+ }
+
+.banner h1 {
+  font-size: 65px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+.banner p {
+  color: #B8B8B8;
+  font-size: 28px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  width: 96%;
+}
+.banner button {
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 60px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+}
+.banner button svg {
+  font-size: 25px;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+  line-height: 1;
+}
+.banner button:hover svg {
+  margin-left: 25px;
+}
+.banner img {
+  animation: updown 3s linear infinite;
+}
+@keyframes updown {
+    0% {
+        transform: translateY(-20px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+.txt-rotate > .wrap {
+  border-right: 0.08em solid #666;
+}
 
 
+.calender-h1{
+font-size: 65px;
+font-weight: 700;
+letter-spacing: 0.8px;
+line-height: 1;
+margin-bottom: 20px;
+display: block;
+}
+
+
+/* Banner ends */
+
+/* Calendar Component Styles */
+.calendar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.calendar-navigation {
+  display: flex;
+  flex-direction: row; /* Align items horizontally */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  gap: 20px; /* Space between buttons and month name */
+}
+
+.calendar-navigation button {
+  font-size: 14px; /* Default button font size */
+  padding: 8px 16px; /* Default button padding */
+}
+
+.calendar-navigation span {
+  font-size: 20px; /* Default month name font size */
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .calendar-navigation button {
+    font-size: 12px; /* Reduce button font size for smaller screens */
+    padding: 6px 12px; /* Reduce button padding for smaller screens */
+  }
+
+  .calendar-navigation span {
+    font-size: 18px; /* Reduce month name font size for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .calendar-navigation button {
+    font-size: 10px; /* Further reduce button font size for very small screens */
+    padding: 4px 8px; /* Further reduce button padding */
+  }
+
+  .calendar-navigation span {
+    font-size: 16px; /* Further reduce month name font size for very small screens */
+  }
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+  gap: 10px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #000;
+  height: 200px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden; /* Ensure content doesn't overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.calendar-day span {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.activity-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.activity-detail {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #6f42c1;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.activity-detail p {
+  margin: 5px 0;
+  font-size: 14px; /* Smaller font size */
+}
+
+.activity-detail p strong {
+  font-weight: bold;
+}
+
+/* Modal Styles */
+.modal-content {
+  background-color: #fff;
+  color: #000;
+  max-height: 80vh; /* Limit modal height to viewport height */
+  overflow: hidden; /* Hide overflow on the main modal container */
+  margin-top: 10%; /* Adjust margin to move modal down */
+}
+
+.modal-header {
+  background-color: #6f42c1;
+  color: #fff;
+  font-size: 16px; /* Decrease font size for better visibility */
+  padding: 10px; /* Adjust padding for title visibility */
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
+}
+
+.modal-body {
+  color: #000;
+  font-size: 14px; /* Adjust font size for readability */
+  max-height: calc(80vh - 56px); /* Leave space for header and footer */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+  .calendar-day {
+    padding: 15px; /* Adjust padding for smaller screens */
+    height: auto; /* Auto height for flexibility */
+  }
+
+  .calendar-day span {
+    font-size: 18px;
+  }
+
+  .calendar-navigation {
+    flex-direction: row; /* Keep horizontal alignment on small screens */
+    gap: 15px; /* Adjust gap for smaller screens */
+  }
+
+  .calendar-navigation button {
+    font-size: 12px; /* Further reduce button font size */
+    padding: 6px 12px; /* Further reduce button padding */
+  }
+
+  .calendar-navigation span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .calendar-day {
+    padding: 10px; /* Further adjust padding for very small screens */
+  }
+
+  .calendar-day span {
+    font-size: 16px; /* Further reduce font size */
+  }
+
+  .activity-detail {
+    font-size: 12px; /* Further reduce font size for better fit */
+    padding: 6px; /* Further reduce padding */
+  }
+
+  .activity-detail p {
+    font-size: 12px; /* Further reduce font size */
+  }
+}
+
+
+/* Chat component */
+/* Responsive styling for the button */
+.text-center {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  font-size: 1rem; /* Default font size */
+  border: none;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    font-size: 0.875rem; /* Adjust font size for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .btn {
+    font-size: 0.75rem; /* Further adjust font size for very small screens */
+  }
+}
+
+.wrapper{
+    width:200px;
+    height:60px;
+    position: relative;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+  }
+  .circle{
+    width:20px;
+    height:20px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #6f42c1; /* New color */
+    left:15%;
+    transform-origin: 50%;
+    animation: circle .5s alternate infinite ease;
+  }
+  
+  @keyframes circle{
+    0%{
+        top:60px;
+        height:5px;
+        border-radius: 50px 50px 25px 25px;
+        transform: scaleX(1.7);
+    }
+    40%{
+        height:20px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+    100%{
+        top:0%;
+    }
+  }
+  .circle:nth-child(2){
+    left:45%;
+    animation-delay: .2s;
+  }
+  .circle:nth-child(3){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+  }
+  .shadow{
+    width:20px;
+    height:4px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top:62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left:15%;
+    filter: blur(1px);
+    animation: shadow .5s alternate infinite ease;
+  }
+  
+  @keyframes shadow{
+    0%{
+        transform: scaleX(1.5);
+    }
+    40%{
+        transform: scaleX(1);
+        opacity: .7;
+    }
+    100%{
+        transform: scaleX(.2);
+        opacity: .4;
+    }
+  }
+  .shadow:nth-child(4){
+    left: 45%;
+    animation-delay: .2s
+  }
+  .shadow:nth-child(5){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+  }
+  .gradientText {
+    background: #1e1e1e;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .bgColor{
+    background: -webkit-linear-gradient(90deg, rgba(106,44,112,1) 21%, #6f42c1 83%);
+  }
+  .wrapper span{
+    position: absolute;
+    top:75px;
+    font-family: 'Lato';
+    font-size: 20px;
+    letter-spacing: 12px;
+    color: #cecece; /* New color */
+    left:15%;
+  }
