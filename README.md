@@ -24,11 +24,14 @@ EEVI was developed with a focus on simplicity and efficiency, catering to the ne
 
 ## Walkthrough of the Website
 
+Try the app here:
+
+[View on Vercel](https://headstarter-hackathon-0-f.vercel.app/)
+
 For a detailed walkthrough of the EEVI web app, please watch the following video:
 
 [YouTube Link](https://youtu.be/RyYKJZefvKc)
 
-[View on Vercel](https://headstarter-hackathon-0-f.vercel.app/)
 
 ## Image Gallery
 
