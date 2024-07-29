@@ -11,9 +11,9 @@ EEVI was developed with a focus on simplicity and efficiency, catering to the ne
 - **Front-end**: React JS
 - **Back-end**: Node JS, Express JS
 - **Database**: PostgreSQL
+- **APIs**: Google Calender API, Gemini API, and Custom API with Express JS
 - **Testing**: Postman
 - **Deployment**: Vercel (Client and Server), Azure (Database)
-- **AI Integration**: Intelligent scheduling and recommendations
 
 ## Team and Responsibilities
 
