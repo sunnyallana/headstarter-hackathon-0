@@ -22,10 +22,11 @@ const corsOptions = {
 };
 
 // Apply CORS middleware globally
-app.use(cors());
+app.use(cors(corsOptions));
 
+// Method Not Allowed middleware
 app.use((req, res, next) => {
-  if (req.method !== 'GET') {
+  if (req.method !== 'GET' && req.method !== 'POST' && req.method !== 'DELETE' && req.method !== 'PUT') {
     res.status(405).send('Method Not Allowed');
   } else {
     next();
@@ -42,13 +43,9 @@ const db = new Client({
   port: process.env.PG_PORT,
 });
 
-db.connect(err => {
-  if (err) {
-    console.error('Connection error', err.stack);
-  } else {
-    console.log('Connected to the database');
-  }
-});
+db.connect()
+  .then(() => console.log('Connected to the database'))
+  .catch(err => console.error('Connection error', err.stack));
 
 // Fetch all events
 app.get('/weeklydata', async (req, res) => {
