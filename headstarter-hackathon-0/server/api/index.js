@@ -24,8 +24,8 @@ let sampleEvents = [
   {
     "event_id": 1,
     "event_name": "Tech Conference",
-    "start_date": "2024-07-28T09:00:00Z",
-    "end_date": "2024-07-29T17:00:00Z",
+    "start_date": "2024-07-1T09:00:00Z",
+    "end_date": "2024-07-1T17:00:00Z",
     "details": "A conference focusing on the latest in technology.",
     "type": "Conference",
     "track": "A",
