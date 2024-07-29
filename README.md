@@ -1,6 +1,6 @@
 # EEVI - Centralized Activity Tracker Web App
 
-Welcome to **EEVI**, a centralized activity tracker web application designed for the Fast Pacing Headstarter Fellowship. EEVI allows users to effortlessly discover and manage events and meetings, providing a streamlined experience for tracking and scheduling activities.
+Welcome to **EEVI**, a centralized activity tracker web application designed for the Fast Pacing Headstarter Fellowship. EEVI allows users to effortlessly discover and manage events and meetings, providing a streamlined experience for tracking activities.
 
 ## Project Overview
 
