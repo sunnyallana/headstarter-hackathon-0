@@ -38,6 +38,8 @@ Below are some screenshots of EEVI showcasing various features of the applicatio
 2. ![Image 2](images/image_2.jpg)
 3. ![Image 3](images/image_3.jpg)
 4. ![Image 4](images/image_4.jpg)
+5. ![image](https://github.com/user-attachments/assets/662e7e7f-91e0-45db-aa2f-539cb399e941)
+
 
 ## Features
 
