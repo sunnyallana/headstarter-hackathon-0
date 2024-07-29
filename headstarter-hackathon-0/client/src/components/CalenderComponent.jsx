@@ -31,7 +31,7 @@ const CalendarComponent = () => {
             });
 
             const formattedActivities = response.data.map(event => ({
-                date: event.start_date.split(' ')[0],
+                date: event.start_date.split('T')[0], // Correct split for ISO string
                 title: event.event_name,
                 startTime: new Date(event.start_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 endTime: new Date(event.end_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -49,7 +49,7 @@ const CalendarComponent = () => {
         try {
             const response = await axios.get('https://www.googleapis.com/calendar/v3/calendars/c_bf9b2e848d3f6cb19d8e75fb210a554680303a8cfa5a626f10950801465ae0e2@group.calendar.google.com/events?key=AIzaSyCmO5hd0NfYV0yaePAva9PKhb4_IN1CdB8&maxResults=100');
             const events = response.data.items.map(event => ({
-                date: event.start.dateTime.split('T')[0],
+                date: event.start.dateTime.split('T')[0], // Correct split for ISO string
                 title: event.summary,
                 startTime: new Date(event.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 endTime: new Date(event.end.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
