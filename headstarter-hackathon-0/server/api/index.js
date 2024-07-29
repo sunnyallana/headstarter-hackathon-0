@@ -16,43 +16,92 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
 const PORT = process.env.PORT || 4000;  // Default to port 4000 if PORT is not set
 
-// Sample data for events since the database has been disconnected
+// Updated sample data for events
 let sampleEvents = [
   {
-    "event_id": 1,
-    "event_name": "Tech Conference",
-    "start_date": "2024-07-01T09:00:00Z",
-    "end_date": "2024-07-01T17:00:00Z",
-    "details": "A conference focusing on the latest in technology.",
-    "type": "Conference",
-    "track": "A",
-    "speaker": "John Ross"
-  },
-  {
     "event_id": 2,
-    "event_name": "Trend In SE Workshop",
-    "start_date": "2024-07-02T10:00:00Z",
-    "end_date": "2024-07-02T15:00:00Z",
-    "details": "A hands-on workshop about trend in Software Engineering",
-    "type": "Workshop",
-    "track": "B",
-    "speaker": "Andrew James"
+    "event_name": "Pathways to Tech Event",
+    "start_date": "2024-07-25T07:00:00Z",
+    "end_date": "2024-07-25T12:00:00Z",
+    "details": "Tech event",
+    "type": "ONLINE EVENT",
+    "track": "General"
   },
   {
     "event_id": 3,
-    "event_name": "Freelancing",
-    "start_date": "2024-07-03T13:00:00Z",
-    "end_date": "2024-07-03T16:00:00Z",
-    "details": "Seminar on Freelancing",
-    "type": "Seminar",
-    "track": "C",
-    "speaker": "Mark Smith"
+    "event_name": "Team Meetup",
+    "start_date": "2024-07-24T20:00:00Z",
+    "end_date": "2024-07-26T23:59:00Z",
+    "details": "Team gathering",
+    "type": "IN-PERSON EVENT",
+    "track": "General"
+  },
+  {
+    "event_id": 4,
+    "event_name": "Share Insights on LinkedIn",
+    "start_date": "2024-07-25T22:30:00Z",
+    "end_date": "2024-07-26T23:59:00Z",
+    "details": "Share professional insights on LinkedIn related to session held by HeadStarter AI",
+    "type": "NETWORKING",
+    "track": "General"
+  },
+  {
+    "event_id": 5,
+    "event_name": "Hackathon",
+    "start_date": "2024-07-26T20:00:00Z",
+    "end_date": "2024-07-28T09:00:00Z",
+    "details": "Build a project and record its analytics and try to get users",
+    "type": "HACKATHON",
+    "track": "General"
+  },
+  {
+    "event_id": 6,
+    "event_name": "Give Project Feedback",
+    "start_date": "2024-07-27T15:00:00Z",
+    "end_date": "2024-07-28T23:59:00Z",
+    "details": "Feedback session",
+    "type": "NETWORKING",
+    "track": "General"
+  },
+  {
+    "event_id": 7,
+    "event_name": "Meetup with Fellows",
+    "start_date": "2024-07-28T12:00:00Z",
+    "end_date": "2024-07-28T23:59:00Z",
+    "details": "Meet and greet",
+    "type": "IN-PERSON EVENT",
+    "track": "General"
+  },
+  {
+    "event_id": 8,
+    "event_name": "Project 1: Personal Website",
+    "start_date": "2024-07-22T00:00:00Z",
+    "end_date": "2024-07-26T19:00:00Z",
+    "details": "Create a portfolio website using HTML and CSS.",
+    "type": "PROJECT",
+    "track": "General"
+  },
+  {
+    "event_id": 9,
+    "event_name": "Reach Out to Engineers",
+    "start_date": "2024-07-22T00:00:00Z",
+    "end_date": "2024-07-24T23:59:00Z",
+    "details": "Networking with engineers",
+    "type": "NETWORKING",
+    "track": "General"
+  },
+  {
+    "event_id": 10,
+    "event_name": "Interview",
+    "start_date": "2024-07-24T19:30:00Z",
+    "end_date": "2024-07-24T22:59:00Z",
+    "details": "Mock interview",
+    "type": "MOCK INTERVIEW",
+    "track": "General"
   }
-]
-
+];
 
 // Commented out database connection code
 /*
