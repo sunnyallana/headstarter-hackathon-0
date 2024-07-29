@@ -22,7 +22,7 @@ const corsOptions = {
 };
 
 // Apply CORS middleware globally
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use((req, res, next) => {
   if (req.method !== 'GET') {
