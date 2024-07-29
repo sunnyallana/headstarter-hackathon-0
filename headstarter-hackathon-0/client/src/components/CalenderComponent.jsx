@@ -31,15 +31,17 @@ const CalendarComponent = () => {
             });
 
             const formattedActivities = response.data.map(event => ({
-                date: event.start_date.split('T')[0], // Correct split for ISO string
+                date: event.start_date.split('T')[0],
                 title: event.event_name,
                 startTime: new Date(event.start_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 endTime: new Date(event.end_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                speaker: event.speaker || 'N/A', // Ensure 'speaker' is properly retrieved
+                details: event.details,
+                type: event.type, // Added type field
                 id: event.event_id,
             }));
 
             setActivities(formattedActivities);
+            console.log(formattedActivities);
         } catch (error) {
             console.error('Error fetching activities:', error);
         }
@@ -49,7 +51,7 @@ const CalendarComponent = () => {
         try {
             const response = await axios.get('https://www.googleapis.com/calendar/v3/calendars/c_bf9b2e848d3f6cb19d8e75fb210a554680303a8cfa5a626f10950801465ae0e2@group.calendar.google.com/events?key=AIzaSyCmO5hd0NfYV0yaePAva9PKhb4_IN1CdB8&maxResults=100');
             const events = response.data.items.map(event => ({
-                date: event.start.dateTime.split('T')[0], // Correct split for ISO string
+                date: event.start.dateTime.split('T')[0],
                 title: event.summary,
                 startTime: new Date(event.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 endTime: new Date(event.end.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -95,9 +97,9 @@ const CalendarComponent = () => {
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     transition={{
-                        duration: 0.5, // Slightly shorter duration
-                        ease: "easeOut", // Smooth easing
-                        delay: 0.05, // Delay before animation starts
+                        duration: 0.5,
+                        ease: "easeOut",
+                        delay: 0.05,
                     }}
                     key={day}
                     className="calendar-day"
@@ -105,7 +107,9 @@ const CalendarComponent = () => {
                 >
                     <span>{day}</span>
                     {events.length > 0 && (
-                        <span style={{cursor: 'pointer', fontSize: '0.8rem'}} className="activity-count">{events.length} {events.length === 1 ? 'Activity' : 'Activities'}</span>
+                        <span style={{ cursor: 'pointer', fontSize: '0.8rem' }} className="activity-count">
+                            {events.length} {events.length === 1 ? 'Activity' : 'Activities'}
+                        </span>
                     )}
                 </motion.div>
             );
@@ -120,9 +124,9 @@ const CalendarComponent = () => {
             <div className="calendar-wrapper">
                 <motion.div
                     className="calendar-navigation"
-                    initial={{ y: 20, opacity: 0 }} // Initial position and opacity
-                    whileInView={{ y: 0, opacity: 1 }} // Final position and opacity
-                    transition={{ duration: 1, ease: "easeOut" }} // Animation settings
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                 >
                     <Button
                         style={{ backgroundColor: '#6f42c1', color: '#f8f9fa', border: 'none' }}
@@ -159,14 +163,15 @@ const CalendarComponent = () => {
                                         <p><strong>Title:</strong> {event.title}</p>
                                         <p><strong>Start Time:</strong> {event.startTime}</p>
                                         <p><strong>End Time:</strong> {event.endTime}</p>
-                                        {event.speaker && <p><strong>Speaker:</strong> {event.speaker}</p>}
+                                        {event.details && <p><strong>Details:</strong> {event.details}</p>}
+                                        {event.type && <p><strong>Type:</strong> {event.type}</p>} {/* Added type display */}
                                     </li>
                                 ))}
                             </ul>
                         )}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button style={{backgroundColor: '#6f42c1', color: '#f8f9fa'}} variant="secondary" onClick={handleClose}>
+                        <Button style={{ backgroundColor: '#6f42c1', color: '#f8f9fa' }} variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
                     </Modal.Footer>
