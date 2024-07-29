@@ -17,10 +17,10 @@ EEVI was developed with a focus on simplicity and efficiency, catering to the ne
 
 ## Team and Responsibilities
 
-- **Sunny Shaban Ali**: Front-end Development using React JS, API testing with Postman, Client and Server Deployment on Vercel, Google Analytics Setup, and AI and overall Project Integration
+- **Sunny Shaban Ali**: Revamping initial Figma Design into the current UI, Front-end Development using React JS, API testing with Postman, Client and Server Deployment on Vercel, Google Analytics Setup, and AI and overall Project Integration
 - **Abdul Rehman**: Back-end Development using Node JS and Express JS, API testing with Postman, Postgres Database Creation and Deployment on Azure, and Support with configuring AI Component
-- **Burhanuddin**: Ideation, Figma Design, Support with Azure Deployment, and Demo Slides Preparation
-- **Allison**: Ideation, Figma Design, and Demo Slides Preparation
+- **Burhanuddin**: Ideation, Initial Figma Design, Support with Azure Deployment, and Demo Slides Preparation
+- **Allison**: Ideation, Initial Figma Design, and Demo Slides Preparation
 
 ## Walkthrough of the Website
 
